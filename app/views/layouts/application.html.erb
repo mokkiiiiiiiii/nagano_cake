@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoCake</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +10,82 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+           <a class="navbar-brand" href="/"><span>Nagano Cake</span></a>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+           </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+             <% if customer_signed_in? %>
+
+             <li class="nav-item">
+             <%= link_to public_customers_show_path, class:'nav-link text-light' do %>
+             <i class="fas fa-home"></i> マイページ
+             <% end %>
+             <li class="nav-item">
+             <%= link_to public_items_path, class:'nav-link text-light' do %>
+             <i class="fas fa-home"></i> 商品一覧
+             <% end %>
+             <li>
+             <%= link_to public_cart_items_path, class:'nav-link text-light' do %>
+             <i class="fas fa-home"></i> カート画面
+             <% end %>
+             </li>
+             <li>
+             <%= link_to destroy_customer_session_path, method: :delete, class:'nav-link text-light' do %>
+             <i class="fas fa-home"></i> ログアウト
+             <% end %>
+             </li>
+              <% elsif admin_signed_in? %>
+
+             <li class="nav-item">
+             <%= link_to admin_root_path, class:'nav-link text-light' do %>
+             <i class="fas fa-home"></i> 注文履歴一覧
+             <% end %>
+             <li class="nav-item">
+             <%= link_to public_items_path, class:'nav-link text-light' do %>
+             <i class="fas fa-home"></i> 商品一覧
+             <% end %>
+             <li>
+             <%= link_to admin_customers_path, class:'nav-link text-light' do %>
+             <i class="fas fa-home"></i> 顧客情報一覧
+             <% end %>
+             </li>
+             <li>
+             <%= link_to destroy_admin_session_path, method: :delete, class:'nav-link text-light' do %>
+             <i class="fas fa-home"></i> ログアウト
+             <% end %>
+             </li>
+             <% else %>
+             <li>
+             <%= link_to public_about_path, class:"nav-link text-light" do %>
+             <i class="fas fa-link"></i> 概要
+             <% end %>
+             </li>
+             <li class="nav-item">
+             <%= link_to public_items_path, class:'nav-link text-light' do %>
+             <i class="fas fa-home"></i> 商品一覧
+             <% end %>
+             <li>
+             <%= link_to new_customer_registration_path, class:"nav-link text-light" do %>
+             <i class="fas fa-user-plus"></i> 会員新規登録
+             <% end %>
+             </li>
+             <li>
+             <%= link_to new_customer_session_path, class:"nav-link text-light" do %>
+             <i class="fas fa-user-plus"></i> 会員ログイン
+             <% end %>
+             <% end %>
+             </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+   <%= yield %>
   </body>
 </html>

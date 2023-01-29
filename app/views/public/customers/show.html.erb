@@ -1,0 +1,21 @@
+<h2>マイページ</h2>
+
+<p>名前</p>
+<span><%= @customer.last_name %><%= @customer.first_name %></span>
+
+<p>かな</p>
+<span><%= @customer.last_name_kana %><%= @customer.first_name_kana %></span>
+
+<p>メール</p>
+<span><%= @customer.email %></span>
+
+<p>郵便番号</p>
+<span><%= @customer.postal_code %></span>
+
+<p>住所</p>
+<span><%= @customer.address %></span>
+
+<p>電話番号</p>
+<span><%= @customer.telephone_number %></span>
+
+<%= link_to "注文履歴一覧画面", public_orders_path %>

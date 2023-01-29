@@ -1,0 +1,19 @@
+<% @item.each do |item| %>
+<div>
+  <%#= image_tag path_to_image %>
+  <p>画像</p>
+  <% if item.image.attached? %>
+    <%= image_tag item.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+  <p>商品名：<%= item.name %></p>
+  <p>商品説明文：<%= item.introduction %></p>
+  <p>税抜き価格：<%= item.price %></p>
+
+</div>
+
+
+<% end %>
+
+<%= link_to "新規登録画面", new_admin_item_path %>

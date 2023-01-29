@@ -1,0 +1,23 @@
+<h2>画像</h2>
+<% if @item.image.attached? %>
+  <%= image_tag @item.image, size: "300x300" %>
+<% else %>
+  <%= image_tag 'no_image', size: "300x300" %>
+<% end %>
+
+<h2>商品名</h2>
+<p><%= @item.name %></p>
+
+<h2>商品説明文</h2>
+<p><%= @item.introduction %></p>
+
+<h2>税抜き価格</h2>
+<p><%= @item.price %></p>
+
+<%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
+<%= f.select :amount, [1,2,3,4,5,6,7,8,9,10] %>
+
+<%= f.hidden_field :item_id, :value => @item.id %>
+
+<%= f.submit 'カートに入れる' %>
+<% end %>

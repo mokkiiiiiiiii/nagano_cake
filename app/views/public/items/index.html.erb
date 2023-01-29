@@ -1,0 +1,22 @@
+<h1>商品一覧</h1>
+
+<% @items.each do |item| %>
+  <p>画像</p>
+  <span>
+  <%= link_to item.image, public_item_path(item.id) %>
+  <% if item.image.attached? %>
+    <%= image_tag item.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+  </span>
+
+  <p>商品名</p>
+  <span><%= item.name %></span>
+
+  <p>商品説明文</p>
+  <span><%= item.introduction %></span>
+
+  <p>税抜き価格</p>
+  <span><%= item.price %></span>
+<% end %>

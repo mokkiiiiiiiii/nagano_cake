@@ -1,0 +1,26 @@
+<div>
+  <%= link_to new_admin_item_path(@item.id) do %>
+  <% end %>
+
+<h2>画像</h2>
+<% if @item.image.attached? %>
+<%= image_tag @item.image, size: "80x80" %>
+<% else %>
+<%= image_tag 'no_image', size: "80x80" %>
+<% end %>
+
+
+<h2>商品名</h2>
+<p><%= @item.name %></p>
+
+<h2>商品説明文</h2>
+<p><%= @item.introduction %></p>
+
+<h2>税抜き価格</h2>
+<p><%= @item.price %></p>
+
+</div>
+
+<%=link_to "商品一覧画面",admin_items_path%>
+
+<%=link_to "商品編集画面",edit_admin_item_path%>

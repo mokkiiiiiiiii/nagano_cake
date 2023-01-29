@@ -1,0 +1,10 @@
+<h1>顧客情報編集画面</h1>
+
+<%= form_with model: @customers do |f| %>
+
+  <h4>Name</h4>
+  <%= f.text_field :name %>
+
+  <%= f.submit '登録' %>
+
+<% end %>
