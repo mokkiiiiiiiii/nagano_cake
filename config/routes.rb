@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
   # 顧客用
   # URL /customers/sign_in ...
-  devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
- }
+    devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+    }
 
  namespace :public do
    root to: 'homes#top'
    get "home/about" => "homes#about", as: "about"
    delete "/cart_items/destroy_all"
+   get "/customers/check"
    patch "/customers/withdraw"
    get "/customers/show"
    post "/orders/check"
@@ -20,8 +21,10 @@ Rails.application.routes.draw do
     resources :cart_items, only:[:index,:update,:destroy,:create]
     resources :orders, only: [:new,:create,:index,:show]
     resources :addresses, only:[:index,:edit,:create,:update,:destroy]
-    resources :cart_items
     end
+    
+
+    
 
   # 管理者用
   # URL /admin/sign_in ...

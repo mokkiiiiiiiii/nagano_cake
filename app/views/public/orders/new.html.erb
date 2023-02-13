@@ -1,17 +1,28 @@
 <h1>注文情報入力画面</h1>
 <%= form_with model: @order ,url: public_orders_check_path, method: :post do |f| %>
 
+<p>支払方法</p>
 <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-<%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+<%= f.label :クレジットカード, Order.payment_methods_i18n[:credit_card] %>
 
 <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-<%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+<%= f.label :銀行振込, Order.payment_methods_i18n[:transfer]%>
 
+<p>お届け先住所</p>
+<div>
 <%= f.radio_button "select_address", 1 %>
+<%= current_customer.postal_code %>
 <%= current_customer.address %>
+<%= current_customer.last_name %><%= current_customer.first_name %>
+</div>
+<div>
 <%= f.radio_button "select_address", 2 %>
 <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+</div>
+<div>
 <%= f.radio_button "select_address", 3 %>
+</div>
+
 <div class="field">
     <%= f.label :postal_code %><br />
     <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>

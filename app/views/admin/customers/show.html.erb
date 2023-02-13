@@ -1,11 +1,46 @@
-<div>
+<h2>会員詳細</h2>
 
-  <%= link_to admin_customers_path(@customer.id) do %>
-  <% end %>
+  <%= form_with model: @customer, url: public_customer_path(@customer.id) do |f| %>
+  
+  <div class="field">
+    <p>氏名</p>
+    <span><%= @customer.last_name %><%= @customer.first_name %></span>
+  </div>
+  
+  <div class="field">
+    <p>フリガナ</p>
+    <span><%= @customer.last_name_kana %><%= @customer.first_name_kana %></span>
+  </div>
+  
+  <div class="field">
+    <p>郵便番号</p>
+    <%= @customer.postal_code %>
+  </div>
 
-  <h2>Name:</h2>
-  <p><%= @customer.name %></p>
+  <div class="field">
+    <p>住所</p>
+    <%= @customer.address %>
+  </div>
 
-</div>
+  <div class="field">
+    <p>電話番号</p>
+    <%= @customer.telephone_number %>
+  </div>
 
-<%= link_to "商品一覧画面", admin_items_path %>
+  <div class="field">
+    <p>メールアドレス</p>
+    <%= @customer.email %>
+  </div>
+  
+  <div class="field">
+    <p>会員ステータス</p>
+    <% if @customer.is_deleted %>
+      <span>退会</span>
+      <% else %>
+      <span>有効</span>
+      <% end %>
+  </div>
+<% end %>
+
+<%= link_to "編集する", edit_admin_customer_path %>
+<%= link_to "注文履歴一覧", admin_root_path %>

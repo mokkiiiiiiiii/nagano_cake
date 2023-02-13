@@ -1,30 +1,50 @@
-<h1>Customers#edit</h1>
-<p>Find me in app/views/customers/edit.html.erb</p>
-<% if @customer.errors.any? %>
-  <%= @customer.errors.count %>errors prohibited this customer from being saved:
-  <ul>
-   <% @customer.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-   <% end %>
-  </ul>
-<% end %>
+<h1>会員情報編集</h1>
+<%= form_with model: @customer, url: public_customer_path(@customer.id) do |f| %>
+<%#= render "public/shared/error_messages", resource: resource %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-
-      <h2>Customer info</h2>
-     <%= form_with model: @customer do |f| %>
-
-      <div class="form-group">
-      <h4>Name</h4>
-      <%= f.text_field :name, class: 'form-control customer_name', autofocus: true, id:"inputName" %>
-      </div>
-
-      
-      <%= f.submit "登録" %>
-      <%= f.submit "退会" %>
-     <% end %>
-    </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
   </div>
-</div>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name_kana %><br />
+    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name_kana %><br />
+    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postal_code %><br />
+    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :telephone_number %><br />
+    <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "編集内容を保存" %>
+    <%= link_to "退会する", public_customers_check_path %>
+  </div>
+<% end %>

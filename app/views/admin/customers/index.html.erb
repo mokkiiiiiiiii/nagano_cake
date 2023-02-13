@@ -1,4 +1,4 @@
-<h2>Cunstomers</h2>
+<h2>顧客一覧</h2>
   <table class="table">
    <thead>
     <tr>
@@ -9,8 +9,14 @@
   <tbody>
     <% @customer.each do |customer| %>
       <tr>
-        <td><%= user.name %></td>
-        <td><%= link_to "詳細",admin_customer_path(customer.id) %></td>
+        <td><%= link_to customer.full_name,admin_customer_path(customer.id) %></td>
+        <td><%= customer.email %></td>
+        <td><% if customer.is_deleted %>
+            <span>退会</span>
+            <% else %>
+            <span>有効</span>
+            <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

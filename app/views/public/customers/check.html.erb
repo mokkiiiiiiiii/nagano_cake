@@ -1,2 +1,7 @@
-<h1>Customers#check</h1>
-<p>Find me in app/views/customers/check.html.erb</p>
+<h1>本当に退会しますか？</h1>
+<p>退会すると会員情報や</p>
+<p>これまでの購入履歴が閲覧できなくなります</p>
+<p>退会する場合は「退会する」をクリックして下さい</p>
+
+<%= link_to "退会しない", public_customers_show_path %>
+<%= link_to "退会する", public_customers_withdraw_path, method: :PATCH %>

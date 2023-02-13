@@ -2,7 +2,13 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  #before_action :customer_state, only: [:create]
+  before_action :customer_state, only: [:create]
+  def after_sign_in_path_for(resource)
+   public_customers_show_path
+  end
+  def after_sign_out_path_for(resource)
+    public_root_path
+  end
 
   protected
   # 退会しているかを判断するメソッド
@@ -24,12 +30,13 @@ class Public::SessionsController < Devise::SessionsController
         #redirect_to new_customer_session_path
          #end
       #end
-
-      if !@customer.is_deleted && @customer.valid_password?(params[:customer][:password])
-        redirect_to customer_session_path
-      else
-        redirect_to new_customer_session_path
+    
+      if @customer.is_deleted && @customer.valid_password?(params[:customer][:password])
+        #redirect_to customer_session_path
+      #else
+        redirect_to new_customer_registration_path
       end
+      #byebug
   end
   # GET /resource/sign_in
   # def new
@@ -40,18 +47,14 @@ class Public::SessionsController < Devise::SessionsController
   # def create
   #   super
   # end
-  def after_sign_in_path_for(resource)
-   public_customer_path(current_customer)
-  end
+  
 
 
   # DELETE /resource/sign_out
   # def destroy
   #   super
   # end
-  def after_sign_out_path_for(resource)
-    public_root_path
-  end
+  
 
   # protected
 

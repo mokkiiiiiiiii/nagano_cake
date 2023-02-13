@@ -3,11 +3,12 @@
 <% @items.each do |item| %>
   <p>画像</p>
   <span>
-  <%= link_to item.image, public_item_path(item.id) %>
+  <%= link_to public_item_path(item.id) do %>
   <% if item.image.attached? %>
     <%= image_tag item.image, size: "200x200" %>
   <% else %>
     <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
   <% end %>
   </span>
 
