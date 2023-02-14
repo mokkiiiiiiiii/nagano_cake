@@ -4,4 +4,4 @@
 <p>退会する場合は「退会する」をクリックして下さい</p>
 
 <%= link_to "退会しない", public_customers_show_path %>
-<%= link_to "退会する", public_customers_withdraw_path, method: :PATCH %>
+<%= link_to "退会する", public_customers_withdraw_path, method: :PATCH ,"data-confirm" => "本当に退会しますか？" %>
